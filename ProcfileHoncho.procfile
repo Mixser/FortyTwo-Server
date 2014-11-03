@@ -1,0 +1,2 @@
+web: (gunicorn fortytwo.wsgi --log-file -)
+celery: (python manage.py celeryd -B)
