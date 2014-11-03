@@ -6,15 +6,15 @@ TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
-CURRENT_HOST = "XXXXXXXXXX"
+CURRENT_HOST = "dry-oasis-8791.herokuapp.com"
 BASE_URL = "http://" + CURRENT_HOST
 
 # Email sending (Mandrill App)
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.mandrillapp.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'gleb@razortheory.com'
-EMAIL_HOST_PASSWORD = 'UahI2QbplH25AxQeqt6oJQ'
+# EMAIL_HOST_USER = 'gleb@razortheory.com'
+# EMAIL_HOST_PASSWORD = 'UahI2QbplH25AxQeqt6oJQ'
 
 DEFAULT_FROM_EMAIL = 'noreply@%s' % CURRENT_HOST
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
