@@ -52,7 +52,7 @@ def api_create_user(request):
         if serializer.is_valid():
             user = serializer.save(password=request.DATA['password'])
 
-            result = {"status": "ok", "token": user.key}
+            result = {"status": "ok", "token": user.get_token().key}
             return Response(result, status=201)
         result = {"status": 'error', "errors": serializer.errors}
         return Response(result, status=400)

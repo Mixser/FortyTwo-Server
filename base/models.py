@@ -10,7 +10,6 @@ class ApplicationUser(AbstractBaseUser):
 
     USERNAME_FIELD = 'email'
 
-
     def get_token(self):
         token, created = Token.objects.get_or_create(user=self)
         return token
