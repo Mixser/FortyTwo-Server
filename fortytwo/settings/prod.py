@@ -28,9 +28,9 @@ AWS_STORAGE_BUCKET_NAME = 'xxxxxx'
 AWS_ACCESS_KEY_ID = 'xxxxxx'
 AWS_SECRET_ACCESS_KEY = 'xxxxxx'
 
-S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
-STATIC_URL = S3_URL + 'static/'
-MEDIA_URL = S3_URL + 'media/'
 
-DEFAULT_FILE_STORAGE = 'fortytwo.settings.s3utils.MediaRootS3BotoStorage'
-STATICFILES_STORAGE = 'fortytwo.settings.s3utils.StaticRootS3BotoStorage'
+STATIC_URL = '/static/'
+
+
+# DEFAULT_FILE_STORAGE = 'fortytwo.settings.s3utils.MediaRootS3BotoStorage'
+# STATICFILES_STORAGE = 'fortytwo.settings.s3utils.StaticRootS3BotoStorage'
