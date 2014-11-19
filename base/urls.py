@@ -11,5 +11,5 @@ urlpatterns = patterns('base.views',
 urlpatterns += patterns('base.api',
     url(r'^api/signin/?$', 'api_signin', name="api_signin" ),
     url(r'^api/signout/?$', 'api_signout', name="api_signin" ),
-    url(r'^api/create_user/?$', 'api_create_user', name='api_create_user'),
+    url(r'^api/signup/?$', 'api_create_user', name='api_create_user'),
 )
