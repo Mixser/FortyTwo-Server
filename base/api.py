@@ -1,3 +1,4 @@
+from django.utils.datetime_safe import datetime
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -18,6 +19,8 @@ def api_signin(request):
 
         if user.check_password(password):
             content = {"status": "ok", "token": user.get_token().key}
+            user.last_login = datetime.now()
+            user.save()
             return Response(content, status=200)
         else:
             raise Exception
