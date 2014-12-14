@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from base.models import ApplicationUser
+from base.models import ApplicationUser, Score
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -11,3 +11,8 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         password = kwargs.pop('password')
         obj.set_password(password)
         obj.save()
+
+
+class ScoreSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Score

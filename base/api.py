@@ -5,7 +5,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
 from base.models import ApplicationUser
-from base.serializers import UserSerializer
+from base.serializers import UserSerializer, ScoreSerializer
 
 
 @api_view(['POST'])
@@ -50,15 +50,26 @@ def api_signout(request):
 @api_view(['POST'])
 @permission_classes((AllowAny, ))
 def api_create_user(request):
-    if request.method == 'POST':
-        serializer = UserSerializer(data=request.DATA)
-        if serializer.is_valid():
-            user = serializer.save(password=request.DATA['password'])
+    serializer = UserSerializer(data=request.DATA)
+    if serializer.is_valid():
+        user = serializer.save(password=request.DATA['password'])
 
-            result = {"status": "ok", "token": user.get_token().key}
-            return Response(result, status=201)
-        result = {"status": 'error', "errors": serializer.errors}
-        return Response(result, status=400)
-    return Response()
+        result = {"status": "ok", "token": user.get_token().key}
+        return Response(result, status=201)
+    result = {"status": 'error', "errors": serializer.errors}
+    return Response(result, status=400)
 
 
+@api_view(['POST'])
+@permission_classes((IsAuthenticated, ))
+def api_save_score(request):
+
+    data = request.DATA.copy()
+    data['user'] = request.user.id
+    serializer = ScoreSerializer(data=data)
+    if serializer.is_valid():
+        serializer.save()
+        result = {'status': 'ok'}
+        return Response(result, status=201)
+    result = {'status': 'error', 'errors': serializer.errors}
+    return Response(result, status=400)

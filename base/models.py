@@ -48,3 +48,14 @@ class ApplicationUser(AbstractBaseUser, PermissionsMixin):
     def get_token(self):
         token, created = Token.objects.get_or_create(user=self)
         return token
+
+    def __unicode__(self):
+        return self.email
+
+
+class Score(models.Model):
+    user = models.ForeignKey(ApplicationUser)
+    score = models.BigIntegerField()
+
+    def __unicode__(self):
+        return "%s %s" % (self.score, self.user)
