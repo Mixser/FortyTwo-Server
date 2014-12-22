@@ -61,11 +61,11 @@ def api_create_user(request):
 
 
 @api_view(['POST'])
-@permission_classes((IsAuthenticated, ))
+@permission_classes((AllowAny, ))
 def api_save_score(request):
 
     data = request.DATA.copy()
-    data['user'] = request.user.id
+    data['user'] = Token.objects.get(key=data['token']).user.id
     serializer = ScoreSerializer(data=data)
     if serializer.is_valid():
         serializer.save()
